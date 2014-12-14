@@ -1,5 +1,13 @@
 <div class="container">
 
+  <datalist id='users'>
+    <% @users.each do |user| %>
+      <% if user != User.find(session[:user_id]) %>
+        <option value="<%= user.name %>">
+      <% end %>
+    <% end %>
+  </datalist>
+
   <h1>New Confrontation</h1>
   <h3></h3>
   <form action='/confrontation' method='POST'>
@@ -9,7 +17,7 @@
     <p>Argument:</p>
     <textarea name="confrontation[argument]" required></textarea><br>
     <p>Your Opponent:</p>
-    <input type="text" name="opponent" placeholder='Username' required><br>
+    <input type="text" name="opponent" list='users' placeholder='Username' required><br>
     <p>Tags:</p>
     <input type="text" name="tags" placeholder='politics, sports, etc...' required><br>
     <input type="submit" value="Submit">

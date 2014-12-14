@@ -1,5 +1,6 @@
 get '/confrontation/new' do
   if session[:user_id]
+    @users = User.all
     erb :'confrontation/new'
   else
     redirect '/login'
